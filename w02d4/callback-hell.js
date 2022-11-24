@@ -24,7 +24,6 @@ rl.question('What do you think about NodeJS? ', (answer) => {
       console.log(
         `Hello my name is ${nameAns}, I like to do ${sportAns} I think node is ${nodeAns}`
       );
-      rl.close();
     });
   });
 });
