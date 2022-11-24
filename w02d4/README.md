@@ -8,6 +8,10 @@
 - [ ] Parallelizing async things (Promise.all)
 - [ ] Creating our own Promises
 
+### Video
+
+[https://vimeo.com/774843246/159cdfdfcd](https://vimeo.com/774843246/159cdfdfcd)
+
 ### Promises
 
 - An object that may (or may not) resolve to a value in the future
