@@ -1,24 +1,41 @@
-// -------------------- REQUIREMENTS
+// ----------- REQUIREMENTS
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
-// -------------------- MIDDLEWARE
+// ----------- MIDDLEWARES
+app.set('view engine', 'ejs');
+
 app.use((req, res, next) => {
-  console.log(`METHOD: ${req.method} URL: ${req.url}`);
+  // console.log('Hello from my middleware!');
+  console.log(`Incoming request: URL - ${req.url} METHOD - ${req.method}`);
   next();
 });
 
 app.use(morgan('dev'));
 
-// -------------------- ROUTES/ENDPOINTS
+// ----------- ROUTES
 app.get('/', (req, res) => {
-  res.send('Hello World from express!');
+  const templateVars = {
+    message: 'hello there',
+    username: 'Alice Bob Carol',
+    age: 25,
+  };
+
+  res.render('index', templateVars);
+});
+
+app.get('/lighthouselabs', (req, res) => {
+  res.status(200).send('Hello from /lighthouselabs route! 👋');
 });
 
 app.get('/pedro', (req, res) => {
-  res.send('<h1>Hello World from /pedro!</h1>');
+  res.status(200).send('<h1>Hello World from /pedro!</h1>');
+});
+
+app.get('/google', (req, res) => {
+  res.status(302).redirect('https://google.com');
 });
 
 app.get('/api/users', (req, res) => {
@@ -27,15 +44,18 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/welcome', (req, res) => {
-  const { name } = req.query;
-  if (!name) {
-    return res.status(400).send('Name query not provided');
+  console.log(req.query);
+
+  const { username } = req.query;
+  if (!username) {
+    res.status(400).send('username query not provided!');
+    return; // the return statement will stop executing the next lines of code, blocking the next res call and avoiding cannot set headers after response error
   }
 
-  res.send(`Welcome ${name}`);
+  res.status(200).send(`Welcome user ${username}`);
 });
 
-// -------------------- LISTENER
+// ----------- LISTENER
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
