@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AJAX 🎣</title>
 
+    <!-- External JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
     <script defer src="app.js"></script>
   </head>
   <body>
     <h1>Hello from AJAX 🎣</h1>
 
+    <span id="error"></span>
+
     <form id="my-form">
-      <input type="text" name="q" />
+      <input type="text" id="pokemon-input" />
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
     </form>

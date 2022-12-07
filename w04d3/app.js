@@ -1,24 +1,52 @@
 console.log('hi from app js!');
 
-const myForm = document.getElementById('my-form');
-const myData = document.getElementById('data');
-const moves = document.getElementById('moves');
+// VANILLA JS
+// const myForm = document.getElementById('my-form');
+// const myData = document.getElementById('data');
+// const moves = document.getElementById('moves');
 
-myForm.addEventListener('submit', (event) => {
-  //   console.log(event);
+// myForm.addEventListener('submit', (event) => {
+//   //   console.log(event);
+//   event.preventDefault();
+
+//   console.log('Hello from submit!');
+
+//   fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+
+//       myData.innerHTML = data.name;
+//       for (const mv of data.moves) {
+//         const moveListItem = `<li>${mv.move.name}</li>`;
+//         moves.innerHTML += moveListItem;
+//       }
+
+//     });
+// });
+
+// JQUERY
+$('#my-form').submit((event) => {
   event.preventDefault();
+  console.log('Hello from jquery form!');
 
-  console.log('Hello from submit!');
+  const pokemonName = $('#pokemon-input').val();
+  if (!pokemonName) {
+    return $('#error').css('color', 'red').text('Pokemon name is missing');
+  }
 
-  fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      for (const mv of data.moves) {
+  $.ajax({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}` })
+    .then((result) => {
+      console.log(result);
+
+      $('#data').text(result.name);
+
+      for (const mv of result.moves) {
         const moveListItem = `<li>${mv.move.name}</li>`;
-        moves.innerHTML += moveListItem;
+        $('#moves').append(moveListItem);
       }
-
-      myData.innerHTML = JSON.stringify(data.name);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
