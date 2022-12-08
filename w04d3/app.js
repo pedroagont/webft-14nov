@@ -1,52 +1,75 @@
-console.log('hi from app js!');
+$(document).ready(function () {
+  console.log('Hello from console! 👋');
 
-// VANILLA JS
-// const myForm = document.getElementById('my-form');
-// const myData = document.getElementById('data');
-// const moves = document.getElementById('moves');
+  // All the required elements within the DOM
+  const pokemonCard = $('#pokemon-card');
+  const pokemonName = $('#pokemon-name');
+  const pokemonAbilities = $('#pokemon-abilities');
+  const pokemonImage = $('#pokemon-image');
+  const loadingPokeball = $('#loading-pokeball');
 
-// myForm.addEventListener('submit', (event) => {
-//   //   console.log(event);
-//   event.preventDefault();
+  // Event handler for the submit action
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-//   console.log('Hello from submit!');
+    pokemonCard.hide();
+    loadingPokeball.show();
 
-//   fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data);
+    const pokemonInput = $('#pokemon-input').val();
 
-//       myData.innerHTML = data.name;
-//       for (const mv of data.moves) {
-//         const moveListItem = `<li>${mv.move.name}</li>`;
-//         moves.innerHTML += moveListItem;
-//       }
+    setTimeout(() => {
+      $.ajax({
+        url: `https://pokeapi.co/api/v2/pokemon/${pokemonInput}`,
+        method: 'GET',
+      })
+        .then((data) => {
+          // console.log(data);
 
-//     });
-// });
+          if (!data.name) {
+            pokemonImage.attr(
+              'src',
+              'https://www.clipartmax.com/png/full/129-1298464_open-pokeball-download-open-pokeball.png'
+            );
+            pokemonName.text('There is no pokemon with that name :(');
+            pokemonAbilities.empty();
 
-// JQUERY
-$('#my-form').submit((event) => {
-  event.preventDefault();
-  console.log('Hello from jquery form!');
+            loadingPokeball.hide();
+            pokemonCard.show();
 
-  const pokemonName = $('#pokemon-input').val();
-  if (!pokemonName) {
-    return $('#error').css('color', 'red').text('Pokemon name is missing');
-  }
+            return;
+          }
 
-  $.ajax({ url: `https://pokeapi.co/api/v2/pokemon/${pokemonName}` })
-    .then((result) => {
-      console.log(result);
+          pokemonImage.attr('src', data.sprites.front_default);
+          pokemonImage.show();
+          pokemonName.text(data.name);
+          pokemonAbilities.empty();
 
-      $('#data').text(result.name);
+          for (const ab of data.abilities) {
+            const abilityMarkup = `<li>${ab.ability.name}</li>`;
+            pokemonAbilities.append(abilityMarkup);
+          }
 
-      for (const mv of result.moves) {
-        const moveListItem = `<li>${mv.move.name}</li>`;
-        $('#moves').append(moveListItem);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+          loadingPokeball.hide();
+          pokemonCard.show();
+        })
+        .catch((error) => {
+          // console.log(error);
+
+          if (error.status === 404) {
+            pokemonImage.attr(
+              'src',
+              'https://www.clipartmax.com/png/full/129-1298464_open-pokeball-download-open-pokeball.png'
+            );
+            pokemonName.text('There is no pokemon with that name :(');
+            pokemonAbilities.empty();
+
+            loadingPokeball.hide();
+            pokemonCard.show();
+          }
+        });
+    }, 2000);
+  };
+
+  // Adding the event handler to the element that will trigger it
+  $('#pokemon-form').submit(handleSubmit);
 });

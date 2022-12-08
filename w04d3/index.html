@@ -2,33 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>AJAX 🎣</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
 
     <!-- External JS -->
     <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
+      charset="utf-8"
     ></script>
 
     <!-- Custom JS -->
-    <script defer src="app.js"></script>
+    <script defer src="./app.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Hello from AJAX 🎣</h1>
+    <header class="header">
+      <img src="https://ianars.github.io/Pok-dex/images/pokedeex.png" alt="" />
+      <h1>With AJAX! 🎣</h1>
+    </header>
+    <main class="main">
+      <form class="pokemon-form" id="pokemon-form">
+        <label for="pokemon-input">Type the pokemon that you want!</label>
+        <input type="text" id="pokemon-input" required />
+        <button type="submit">Catch that pokemon!</button>
+      </form>
 
-    <span id="error"></span>
+      <div class="pokemon-card" id="pokemon-card">
+        <img
+          src="https://www.clipartmax.com/png/full/129-1298464_open-pokeball-download-open-pokeball.png"
+          alt=""
+          id="pokemon-image"
+        />
+        <h3 id="pokemon-name">Your pokemon data will go here!</h3>
+        <ul id="pokemon-abilities"></ul>
+      </div>
 
-    <form id="my-form">
-      <input type="text" id="pokemon-input" />
-      <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
-    </form>
-
-    <p id="data">Your data will go here!</p>
-
-    <ul id="moves"></ul>
+      <div class="loading-pokeball" id="loading-pokeball">
+        <img
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/029b8bd9-cb5a-41e4-9c7e-ee516face9bb/dayo3ow-7ac86c31-8b2b-4810-89f2-e6134caf1f2d.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAyOWI4YmQ5LWNiNWEtNDFlNC05YzdlLWVlNTE2ZmFjZTliYlwvZGF5bzNvdy03YWM4NmMzMS04YjJiLTQ4MTAtODlmMi1lNjEzNGNhZjFmMmQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ooubhxjHp9PIMhVxvCFHziI6pxDAS8glXPWenUeomWs"
+          alt=""
+        />
+      </div>
+    </main>
   </body>
 </html>
