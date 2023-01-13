@@ -11,7 +11,7 @@ function App() {
   const handleDecrement = () => count > 1 && setCount(count - 1);
   const handleIncrement = () => setCount(count + 1);
 
-  const clickHandler = () => console.log('Hello from character!');
+  const clickHandler = (name) => alert(`${name} says hi!`);
 
   useEffect(() => {
     document.title = `Rick and Morty Page: ${count}`;

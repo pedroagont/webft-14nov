@@ -4,7 +4,7 @@ function CharactersList(props) {
   const { results, clickHandler } = props;
 
   return (
-    <ul>
+    <ul className="characters-list">
       {results.length > 0
         ? results.map((char) => (
             <CharactersListItem

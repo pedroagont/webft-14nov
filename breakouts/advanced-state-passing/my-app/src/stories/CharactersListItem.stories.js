@@ -26,6 +26,21 @@ const results = [
 ];
 
 storiesOf('CharactersListItem', module)
-  .add('Rick Sanchez', () => <CharactersListItem char={results[0]} />)
-  .add('Morty Smith', () => <CharactersListItem char={results[1]} />)
-  .add('Summer Smith', () => <CharactersListItem char={results[2]} />);
+  .add('Rick Sanchez', () => (
+    <CharactersListItem
+      char={results[0]}
+      clickHandler={action('clickHandler')}
+    />
+  ))
+  .add('Morty Smith', () => (
+    <CharactersListItem
+      char={results[1]}
+      clickHandler={action('clickHandler')}
+    />
+  ))
+  .add('Summer Smith', () => (
+    <CharactersListItem
+      char={results[2]}
+      clickHandler={action('clickHandler')}
+    />
+  ));

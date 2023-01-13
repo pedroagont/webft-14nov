@@ -26,5 +26,9 @@ const results = [
 ];
 
 storiesOf('CharactersList', module)
-  .add('Initial', () => <CharactersList results={[]} />)
-  .add('Populated', () => <CharactersList results={results} />);
+  .add('Initial', () => (
+    <CharactersList results={[]} clickHandler={action('clickHandler')} />
+  ))
+  .add('Populated', () => (
+    <CharactersList results={results} clickHandler={action('clickHandler')} />
+  ));

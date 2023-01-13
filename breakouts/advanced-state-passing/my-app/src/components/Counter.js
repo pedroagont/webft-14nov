@@ -2,7 +2,7 @@ function Counter(props) {
   const { count, handleDecrement, handleIncrement } = props;
 
   return (
-    <div>
+    <div className="counter">
       <h2>Page: {count}</h2>
       <button onClick={handleDecrement}>Prev</button>
       <button onClick={handleIncrement}>Next</button>

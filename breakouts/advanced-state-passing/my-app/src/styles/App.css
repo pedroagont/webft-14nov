@@ -3,3 +3,33 @@ body {
   background: royalblue;
   color: white;
 }
+
+h1 {
+  text-align: center;
+  font-style: italic;
+}
+
+.counter {
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.characters-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.characters-list-item {
+  list-style-type: none;
+  border: 1px solid white;
+  border-radius: 10px;
+  max-width: 15vw;
+  height: max-content;
+  padding: 0.5em;
+}
+
+.characters-list-item img {
+  width: 100%;
+}
