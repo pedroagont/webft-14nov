@@ -1,8 +1,7 @@
 import React from 'react';
-import useAppData from './useAppData';
-
 import CardList from './CardList';
-import './App.css';
+import useAppData from '../hooks/useAppData';
+import '../styles/App.css';
 
 function App() {
   const { results } = useAppData();
