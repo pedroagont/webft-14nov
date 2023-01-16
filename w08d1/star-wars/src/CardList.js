@@ -1,11 +1,16 @@
 import CardListItem from './CardListItem';
 
 function CardList(props) {
+  const { results } = props;
   return (
     <div className="card-list">
-      <CardListItem name="Luke Skywalker" />
-      <CardListItem name="Chewbacca" />
-      <CardListItem name="R2D2" />
+      {results.map((item) => (
+        <CardListItem
+          key={item.name}
+          name={item.name}
+          birth_year={item.birth_year}
+        />
+      ))}
     </div>
   );
 }
